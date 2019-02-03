@@ -379,6 +379,11 @@ config BR2_LINUX_KERNEL_CUSTOM_DTS_PATH
 
 endif
 
+config BR2_LINUX_KERNEL_INSTALL_OVERLAYS
+	bool "Install all DTS and overlays to image"
+	help
+	  That is for Vibrobox devices
+
 config BR2_LINUX_KERNEL_INSTALL_TARGET
 	bool "Install kernel image to /boot in target"
 	depends on !BR2_TARGET_ROOTFS_INITRAMFS

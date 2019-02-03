@@ -367,6 +367,8 @@ LINUX_APPEND_DTB += ; \
 endif
 endif
 
+
+
 # Compilation. We make sure the kernel gets rebuilt when the
 # configuration has changed.
 define LINUX_BUILD_CMDS
@@ -380,6 +382,8 @@ define LINUX_BUILD_CMDS
 	$(LINUX_APPEND_DTB)
 endef
 
+
+
 ifeq ($(BR2_LINUX_KERNEL_APPENDED_DTB),y)
 # When a DTB was appended, install the potential several images with
 # appended DTBs.
@@ -392,6 +396,18 @@ else
 # build process.
 define LINUX_INSTALL_IMAGE
 	$(INSTALL) -m 0644 -D $(LINUX_IMAGE_PATH) $(1)/$(LINUX_IMAGE_NAME)
+endef
+endif
+
+ifeq ($(BR2_LINUX_KERNEL_INSTALL_OVERLAYS),y)
+define LINUX_INSTALL_DTB_OVERLAYS
+	rm -rf $(1)/overlays
+	mkdir -p $(1)/overlays
+	cp $(KERNEL_ARCH_PATH)/boot/dts/overlays/*.dtb*  $(1)/overlays/
+endef
+else
+define LINUX_INSTALL_DTB_OVERLAYS
+	@echo "Do not install DTB overlays to $(1)/overlays"
 endef
 endif
 
@@ -416,6 +432,7 @@ endef
 define LINUX_INSTALL_IMAGES_CMDS
 	$(call LINUX_INSTALL_IMAGE,$(BINARIES_DIR))
 	$(call LINUX_INSTALL_DTB,$(BINARIES_DIR))
+	$(call LINUX_INSTALL_DTB_OVERLAYS,$(BINARIES_DIR))
 endef
 
 ifeq ($(BR2_STRIP_strip),y)
