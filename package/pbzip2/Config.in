@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PBZIP2
+	bool "pbzip2"
+	help
+	  PBZIP2 is a parallel implementation of the bzip2 block-sorting 
+	  file compressor that uses pthreads and achieves 
+	  near-linear speedup on SMP machines. 
+
+	  http://compression.ca/pbzip2

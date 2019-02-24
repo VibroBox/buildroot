@@ -64,6 +64,7 @@ endmenu
 
 menu "Compressors and decompressors"
 	source "package/bzip2/Config.in"
+	source "package/pbzip2/Config.in"
 	source "package/gzip/Config.in"
 	source "package/lz4/Config.in"
 	source "package/lzip/Config.in"
