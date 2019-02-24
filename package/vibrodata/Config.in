@@ -1,0 +1,12 @@
+config BR2_PACKAGE_VIBRODATA
+	bool "Vibrodata"
+	depends on BR2_arm
+	help
+	  Vibrodata software
+
+if BR2_PACKAGE_VIBRODATA
+config BR2_PACKAGE_VIBRODATA_OPY
+	bool "Obfuscate Python code"
+	help
+	  Obfuscate vibrodata python code by using Opy
+endif
