@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_PYCURL
+	bool "python-pycurl"
+	help
+	  PycURL is a Python interface to libcurl.
+
+	  http://pycurl.io/
